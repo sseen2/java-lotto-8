@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 
 public class WinningNumberTest {
 
-    private Lotto winningNumber;
+    private Lotto winningNumbers;
 
     @BeforeEach
     void setUp() {
-        winningNumber = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
     }
 
     @DisplayName("당첨 번호와 보너스 번호가 같은 경우 예외 발생")
@@ -21,7 +21,7 @@ public class WinningNumberTest {
     void winningNumberEqualBonusNumber() {
         int bonusNumber = 6;
 
-        assertThatThrownBy(() -> new WinningNumber(winningNumber, bonusNumber))
+        assertThatThrownBy(() -> new WinningNumber(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -30,7 +30,7 @@ public class WinningNumberTest {
     void bonusNumberTooSmall() {
         int bonusNumber = 0;
 
-        assertThatThrownBy(() -> new WinningNumber(winningNumber, bonusNumber))
+        assertThatThrownBy(() -> new WinningNumber(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -39,7 +39,7 @@ public class WinningNumberTest {
     void bonusNumberTooBig() {
         int bonusNumber = 46;
 
-        assertThatThrownBy(() -> new WinningNumber(winningNumber, bonusNumber))
+        assertThatThrownBy(() -> new WinningNumber(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
