@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.view.message.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -67,7 +68,7 @@ class ApplicationTest extends NsTest {
             void purchaseAmountNotNumber() {
                 assertSimpleTest(() -> {
                     runException("1000j");
-                    assertThat(output()).contains(ERROR_MESSAGE + ErrorMessage.PURCHASE_AMOUNT_INVALID_FORMAT);
+                    assertThat(output()).contains(ErrorMessage.PURCHASE_AMOUNT_INVALID_FORMAT.getMessage());
                 });
             }
 
@@ -76,7 +77,7 @@ class ApplicationTest extends NsTest {
             void purchaseAmountZero() {
                 assertSimpleTest(() -> {
                     runException("0");
-                    assertThat(output()).contains(ERROR_MESSAGE + ErrorMessage.PURCHASE_AMOUNT_NOT_ZERO);
+                    assertThat(output()).contains(ErrorMessage.PURCHASE_AMOUNT_NOT_ZERO.getMessage());
                 });
             }
 
@@ -85,7 +86,7 @@ class ApplicationTest extends NsTest {
             void purchaseAmountNegative() {
                 assertSimpleTest(() -> {
                     runException("-1");
-                    assertThat(output()).contains(ERROR_MESSAGE + ErrorMessage.PURCHASE_AMOUNT_NOT_NEGATIVE);
+                    assertThat(output()).contains(ErrorMessage.PURCHASE_AMOUNT_NOT_NEGATIVE.getMessage());
                 });
             }
 
@@ -94,7 +95,7 @@ class ApplicationTest extends NsTest {
             void purchaseAmountNotDivideUp() {
                 assertSimpleTest(() -> {
                     runException("1500");
-                    assertThat(output()).contains(ERROR_MESSAGE + ErrorMessage.PURCHASE_AMOUNT_NOT_DIVIDE_UP);
+                    assertThat(output()).contains(ErrorMessage.PURCHASE_AMOUNT_NOT_DIVIDE_UP.getMessage());
                 });
             }
         }
@@ -108,7 +109,7 @@ class ApplicationTest extends NsTest {
             void winningNumberNotNumber() {
                 assertSimpleTest(() -> {
                     runException("1000", "1,2,3,4,5,육");
-                    assertThat(output()).contains(ERROR_MESSAGE + ErrorMessage.WINNING_NUMBER_INVALID_FORMAT);
+                    assertThat(output()).contains(ErrorMessage.WINNING_NUMBER_INVALID_FORMAT.getMessage());
                 });
             }
 
@@ -117,7 +118,7 @@ class ApplicationTest extends NsTest {
             void winningNumberTooFewCount() {
                 assertSimpleTest(() -> {
                     runException("1000", "1,2,3,4,5");
-                    assertThat(output()).contains(ERROR_MESSAGE + ErrorMessage.WINNING_NUMBER_INVALID_COUNT);
+                    assertThat(output()).contains(ErrorMessage.WINNING_NUMBER_INVALID_COUNT.getMessage());
                 });
             }
 
@@ -126,7 +127,7 @@ class ApplicationTest extends NsTest {
             void winningNumberTooManyCount() {
                 assertSimpleTest(() -> {
                     runException("1000", "1,2,3,4,5,6,7");
-                    assertThat(output()).contains(ERROR_MESSAGE + ErrorMessage.WINNING_NUMBER_INVALID_COUNT);
+                    assertThat(output()).contains(ErrorMessage.WINNING_NUMBER_INVALID_COUNT.getMessage());
                 });
             }
 
@@ -135,7 +136,7 @@ class ApplicationTest extends NsTest {
             void winningNumberTooSmall() {
                 assertSimpleTest(() -> {
                     runException("1000", "0,1,2,3,4,5");
-                    assertThat(output()).contains(ERROR_MESSAGE + ErrorMessage.WINNING_NUMBER_OUT_OF_RANGE);
+                    assertThat(output()).contains(ErrorMessage.WINNING_NUMBER_OUT_OF_RANGE.getMessage());
                 });
             }
 
@@ -144,7 +145,7 @@ class ApplicationTest extends NsTest {
             void winningNumberTooBig() {
                 assertSimpleTest(() -> {
                     runException("1000", "1,2,3,4,5,46");
-                    assertThat(output()).contains(ERROR_MESSAGE + ErrorMessage.WINNING_NUMBER_OUT_OF_RANGE);
+                    assertThat(output()).contains(ErrorMessage.WINNING_NUMBER_OUT_OF_RANGE.getMessage());
                 });
             }
 
@@ -153,7 +154,7 @@ class ApplicationTest extends NsTest {
             void winningNumberDuplicate() {
                 assertSimpleTest(() -> {
                     runException("1000", "1,1,2,3,4,5");
-                    assertThat(output()).contains(ERROR_MESSAGE + ErrorMessage.WINNING_NUMBER_NOT_DUPLICATE);
+                    assertThat(output()).contains(ErrorMessage.WINNING_NUMBER_NOT_DUPLICATE.getMessage());
                 });
             }
         }
@@ -167,7 +168,7 @@ class ApplicationTest extends NsTest {
             void bonusNumberNotNumber() {
                 assertSimpleTest(() -> {
                     runException("1000", "1,2,3,4,5,6", "칠");
-                    assertThat(output()).contains(ERROR_MESSAGE + ERROR_MESSAGE.BOUNS_NUMBER_INVALID_FORMAT);
+                    assertThat(output()).contains(ErrorMessage.BONUS_NUMBER_INVALID_FORMAT.getMessage());
                 });
             }
 
@@ -176,7 +177,7 @@ class ApplicationTest extends NsTest {
             void bonusNumberEqualWinningNumber() {
                 assertSimpleTest(() -> {
                     runException("1000", "1,2,3,4,5,6", "6");
-                    assertThat(output()).contains(ERROR_MESSAGE + ERROR_MESSAGE.BOUNS_NUMBER_NOT_DUPLICATE);
+                    assertThat(output()).contains(ErrorMessage.BONUS_NUMBER_NOT_DUPLICATE.getMessage());
                 });
             }
 
@@ -185,7 +186,7 @@ class ApplicationTest extends NsTest {
             void bonusNumberTooSmall() {
                 assertSimpleTest(() -> {
                     runException("1000", "1,2,3,4,5,6", "0");
-                    assertThat(output()).contains(ERROR_MESSAGE + ERROR_MESSAGE.BOUNS_NUMBER_TOO_SMALL);
+                    assertThat(output()).contains(ErrorMessage.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
                 });
             }
 
@@ -194,7 +195,7 @@ class ApplicationTest extends NsTest {
             void bonusNumberTooBig() {
                 assertSimpleTest(() -> {
                     runException("1000", "1,2,3,4,5,6", "46");
-                    assertThat(output()).contains(ERROR_MESSAGE + ERROR_MESSAGE.BOUNS_NUMBER_TOO_BIG);
+                    assertThat(output()).contains(ErrorMessage.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
                 });
             }
         }
