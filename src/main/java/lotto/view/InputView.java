@@ -50,4 +50,8 @@ public class InputView {
                 .map(InputView::parseInt)
                 .toList();
     }
+
+    public static int inputBonusNumber() {
+        return parseInt(input());
+    }
 }
