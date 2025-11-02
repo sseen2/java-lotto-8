@@ -29,7 +29,7 @@ public class WinningNumber {
 
     private void validateRange(int bonusNumber) {
         if (bonusNumber < LOTTO_MIN_NUMBER || bonusNumber > LOTTO_MAX_NUMBER) {
-            String errorMessage = String.format(ErrorMessage.WINNING_NUMBER_OUT_OF_RANGE.getMessage(), LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER);
+            String errorMessage = String.format(ErrorMessage.BONUS_NUMBER_OUT_OF_RANGE.getMessage(), LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER);
             throw new IllegalArgumentException(errorMessage);
         }
     }
