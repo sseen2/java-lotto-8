@@ -10,6 +10,10 @@ import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static lotto.domain.LottoConstants.LOTTO_COUNT;
+import static lotto.domain.LottoConstants.LOTTO_MAX_NUMBER;
+import static lotto.domain.LottoConstants.LOTTO_MIN_NUMBER;
+import static lotto.domain.LottoConstants.LOTTO_PRIZE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoApplicationTest extends NsTest {
@@ -61,7 +65,7 @@ class LottoApplicationTest extends NsTest {
         @DisplayName("로또 구입 금액")
         @Nested
         class purchaseAmountTest {
-            @DisplayName("로또 금액이 숫자가 아닌 경우")
+            @DisplayName("숫자가 아닌 경우")
             @Test
             void purchaseAmountNotNumber() {
                 assertSimpleTest(() -> {
@@ -70,21 +74,25 @@ class LottoApplicationTest extends NsTest {
                 });
             }
 
-            @DisplayName("로또 구입 금액이 로또 금액보다 작은 경우")
+            @DisplayName("로또 금액보다 작은 경우")
             @Test
             void purchaseAmountZero() {
+                String errorMessage = String.format(ErrorMessage.PURCHASE_AMOUNT_INVALID_AMOUNT.getMessage(), LOTTO_PRIZE);
+
                 assertSimpleTest(() -> {
                     runException("0");
-                    assertThat(output()).contains(ErrorMessage.PURCHASE_AMOUNT_INVALID_AMOUNT.getMessage());
+                    assertThat(output()).contains(errorMessage);
                 });
             }
 
-            @DisplayName("로또 금액이 나누어 떨어지지 않는 경우")
+            @DisplayName("로또 금액으로 나누어 떨어지지 않는 경우")
             @Test
             void purchaseAmountNotDivideUp() {
+                String errorMessage = String.format(ErrorMessage.PURCHASE_AMOUNT_NOT_DIVIDE_UP.getMessage(), LOTTO_PRIZE);
+
                 assertSimpleTest(() -> {
                     runException("1500");
-                    assertThat(output()).contains(ErrorMessage.PURCHASE_AMOUNT_NOT_DIVIDE_UP.getMessage());
+                    assertThat(output()).contains(errorMessage);
                 });
             }
         }
@@ -93,7 +101,7 @@ class LottoApplicationTest extends NsTest {
         @Nested
         class winningNumberTest {
 
-            @DisplayName("당첨 번호가 숫자가 아닌 경우")
+            @DisplayName("숫자가 아닌 경우")
             @Test
             void winningNumberNotNumber() {
                 assertSimpleTest(() -> {
@@ -102,43 +110,51 @@ class LottoApplicationTest extends NsTest {
                 });
             }
 
-            @DisplayName("당첨 번호의 개수가 6개보다 작은 경우")
+            @DisplayName("개수가 6개보다 작은 경우")
             @Test
             void winningNumberTooFewCount() {
+                String errorMessage = String.format(ErrorMessage.WINNING_NUMBER_INVALID_COUNT.getMessage(), LOTTO_COUNT);
+
                 assertSimpleTest(() -> {
                     runException("1000", "1,2,3,4,5");
-                    assertThat(output()).contains(ErrorMessage.WINNING_NUMBER_INVALID_COUNT.getMessage());
+                    assertThat(output()).contains(errorMessage);
                 });
             }
 
-            @DisplayName("당첨 번호의 개수가 6개보다 많은 경우")
+            @DisplayName("개수가 6개보다 많은 경우")
             @Test
             void winningNumberTooManyCount() {
+                String errorMessage = String.format(ErrorMessage.WINNING_NUMBER_INVALID_COUNT.getMessage(), LOTTO_COUNT);
+
                 assertSimpleTest(() -> {
                     runException("1000", "1,2,3,4,5,6,7");
-                    assertThat(output()).contains(ErrorMessage.WINNING_NUMBER_INVALID_COUNT.getMessage());
+                    assertThat(output()).contains(errorMessage);
                 });
             }
 
-            @DisplayName("당첨 번호가 1보다 작은 경우")
+            @DisplayName("1보다 작은 경우")
             @Test
             void winningNumberTooSmall() {
+                String errorMessage = String.format(ErrorMessage.WINNING_NUMBER_OUT_OF_RANGE.getMessage(), LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER);
+
                 assertSimpleTest(() -> {
                     runException("1000", "0,1,2,3,4,5");
-                    assertThat(output()).contains(ErrorMessage.WINNING_NUMBER_OUT_OF_RANGE.getMessage());
+                    assertThat(output()).contains(errorMessage);
                 });
             }
 
-            @DisplayName("당첨 번호가 45보다 큰 경우")
+            @DisplayName("45보다 큰 경우")
             @Test
             void winningNumberTooBig() {
+                String errorMessage = String.format(ErrorMessage.WINNING_NUMBER_OUT_OF_RANGE.getMessage(), LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER);
+
                 assertSimpleTest(() -> {
                     runException("1000", "1,2,3,4,5,46");
-                    assertThat(output()).contains(ErrorMessage.WINNING_NUMBER_OUT_OF_RANGE.getMessage());
+                    assertThat(output()).contains(errorMessage);
                 });
             }
 
-            @DisplayName("당첨 번호가 중복되는 경우")
+            @DisplayName("중복되는 경우")
             @Test
             void winningNumberDuplicate() {
                 assertSimpleTest(() -> {
@@ -152,7 +168,7 @@ class LottoApplicationTest extends NsTest {
         @Nested
         class bonusNumberTest {
 
-            @DisplayName("보너스 번호가 숫자가 아닌 경우")
+            @DisplayName("숫자가 아닌 경우")
             @Test
             void bonusNumberNotNumber() {
                 assertSimpleTest(() -> {
@@ -161,7 +177,7 @@ class LottoApplicationTest extends NsTest {
                 });
             }
 
-            @DisplayName("보너스 번호가 당첨 번호랑 같은 경우")
+            @DisplayName("당첨 번호랑 같은 경우")
             @Test
             void bonusNumberEqualWinningNumber() {
                 assertSimpleTest(() -> {
@@ -170,21 +186,25 @@ class LottoApplicationTest extends NsTest {
                 });
             }
 
-            @DisplayName("보너스 번호가 1보다 작은 경우")
+            @DisplayName("1보다 작은 경우")
             @Test
             void bonusNumberTooSmall() {
+                String errorMessage = String.format(ErrorMessage.BONUS_NUMBER_OUT_OF_RANGE.getMessage(), LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER);
+
                 assertSimpleTest(() -> {
                     runException("1000", "1,2,3,4,5,6", "0");
-                    assertThat(output()).contains(ErrorMessage.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
+                    assertThat(output()).contains(errorMessage);
                 });
             }
 
-            @DisplayName("보너스 번호가 45보다 큰 경우")
+            @DisplayName("45보다 큰 경우")
             @Test
             void bonusNumberTooBig() {
+                String errorMessage = String.format(ErrorMessage.BONUS_NUMBER_OUT_OF_RANGE.getMessage(), LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER);
+
                 assertSimpleTest(() -> {
                     runException("1000", "1,2,3,4,5,6", "46");
-                    assertThat(output()).contains(ErrorMessage.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
+                    assertThat(output()).contains(errorMessage);
                 });
             }
         }
