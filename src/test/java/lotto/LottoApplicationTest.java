@@ -14,8 +14,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoApplicationTest extends NsTest {
 
-    private static final String ERROR_MESSAGE = "[ERROR] ";
-
     @DisplayName("기능 테스트")
     @Nested
     class functionTest {
@@ -68,7 +66,7 @@ class LottoApplicationTest extends NsTest {
             void purchaseAmountNotNumber() {
                 assertSimpleTest(() -> {
                     runException("1000j");
-                    assertThat(output()).contains(ErrorMessage.PURCHASE_AMOUNT_INVALID_FORMAT.getMessage());
+                    assertThat(output()).contains(ErrorMessage.INPUT_INVALID_FORMAT.getMessage());
                 });
             }
 
@@ -100,7 +98,7 @@ class LottoApplicationTest extends NsTest {
             void winningNumberNotNumber() {
                 assertSimpleTest(() -> {
                     runException("1000", "1,2,3,4,5,육");
-                    assertThat(output()).contains(ErrorMessage.WINNING_NUMBER_INVALID_FORMAT.getMessage());
+                    assertThat(output()).contains(ErrorMessage.INPUT_INVALID_FORMAT.getMessage());
                 });
             }
 
@@ -159,7 +157,7 @@ class LottoApplicationTest extends NsTest {
             void bonusNumberNotNumber() {
                 assertSimpleTest(() -> {
                     runException("1000", "1,2,3,4,5,6", "칠");
-                    assertThat(output()).contains(ErrorMessage.BONUS_NUMBER_INVALID_FORMAT.getMessage());
+                    assertThat(output()).contains(ErrorMessage.INPUT_INVALID_FORMAT.getMessage());
                 });
             }
 
