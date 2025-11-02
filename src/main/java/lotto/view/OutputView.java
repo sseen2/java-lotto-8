@@ -20,4 +20,8 @@ public class OutputView {
     public static void printInputPurchaseAmount() {
         print(InputMessage.PURCHASE_AMOUNT.getMessage());
     }
+
+    public static void printInputWinningNumbers() {
+        print(InputMessage.WINNING_NUMBERS.getMessage());
+    }
 }
