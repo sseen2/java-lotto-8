@@ -1,11 +1,11 @@
 package lotto.view;
 
+import static lotto.domain.LottoConstants.LOTTO_PRIZE;
+
 import camp.nextstep.edu.missionutils.Console;
 import lotto.view.message.ErrorMessage;
 
 public class InputView {
-
-    private static final int LOTTO_PRIZE = 1000;
 
     private InputView() {
     }
