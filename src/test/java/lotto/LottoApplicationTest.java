@@ -12,7 +12,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueN
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ApplicationTest extends NsTest {
+class LottoApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR] ";
 
@@ -72,21 +72,12 @@ class ApplicationTest extends NsTest {
                 });
             }
 
-            @DisplayName("로또 금액이 0인 경우")
+            @DisplayName("로또 구입 금액이 로또 금액보다 작은 경우")
             @Test
             void purchaseAmountZero() {
                 assertSimpleTest(() -> {
                     runException("0");
-                    assertThat(output()).contains(ErrorMessage.PURCHASE_AMOUNT_NOT_ZERO.getMessage());
-                });
-            }
-
-            @DisplayName("로또 금액이 음수인 경우")
-            @Test
-            void purchaseAmountNegative() {
-                assertSimpleTest(() -> {
-                    runException("-1");
-                    assertThat(output()).contains(ErrorMessage.PURCHASE_AMOUNT_NOT_NEGATIVE.getMessage());
+                    assertThat(output()).contains(ErrorMessage.PURCHASE_AMOUNT_INVALID_AMOUNT.getMessage());
                 });
             }
 
@@ -203,6 +194,6 @@ class ApplicationTest extends NsTest {
 
     @Override
     public void runMain() {
-        Application.main(new String[]{});
+        LottoApplication.main(new String[]{});
     }
 }
