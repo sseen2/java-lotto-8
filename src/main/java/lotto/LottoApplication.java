@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoGenerator;
+import lotto.domain.Lottos;
 import lotto.domain.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -12,7 +14,9 @@ public class LottoApplication {
         int purchaseAmount = getPurchaseAmount();
         OutputView.printBlank();
 
-        // TODO: 구입한 로또 번호 출력
+        OutputView.printPurchaseCount(purchaseAmount);
+        Lottos lottos = LottoGenerator.createLottos(purchaseAmount);
+        OutputView.printLottos(lottos.toList());
 
         Lotto winningNumbers = getWinningNumbers();
         OutputView.printBlank();
