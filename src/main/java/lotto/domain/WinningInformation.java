@@ -34,7 +34,7 @@ public class WinningInformation {
 
     private long getTotalPrize() {
         return result.entrySet().stream()
-                .mapToLong(e -> e.getKey().getPrize() * e.getValue())
+                .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
     }
 }
