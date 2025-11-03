@@ -29,7 +29,7 @@ public class LottoApplication {
         winningInformation.calculateResult(lottos.toList());
         OutputView.printWinningInformation(winningInformation);
 
-        // TODO: 총 수익률 출력
+        OutputView.printRateOfProfit(winningInformation, purchaseAmount);
     }
 
     private static int getPurchaseAmount() {

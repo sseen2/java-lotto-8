@@ -65,4 +65,11 @@ public class OutputView {
         }
         return OutputMessage.WINNING_INFORMATION_FORMAT.getMessage();
     }
+
+    public static void printRateOfProfit(WinningInformation winningInformation, int purchaseAmount) {
+        double rateOfProfit = winningInformation.calculateRateOfProfit(purchaseAmount);
+        String output = String.format(OutputMessage.RATE_OF_PROFIT.getMessage(), rateOfProfit);
+
+        OutputView.print(output);
+    }
 }
