@@ -1,6 +1,6 @@
 package lotto.domain;
 
-public enum LottoRanking {
+public enum Ranking {
 
     FIRST(6, false, 2_000_000_000),
     SECOND(5, true, 30_000_000),
@@ -13,9 +13,25 @@ public enum LottoRanking {
     private final boolean matchBonusNumber;
     private final int prize;
 
-    LottoRanking(int matchCount, boolean matchBonusNumber, int prize) {
+    Ranking(int matchCount, boolean matchBonusNumber, int prize) {
         this.matchCount = matchCount;
         this.matchBonusNumber = matchBonusNumber;
         this.prize = prize;
+    }
+
+    public boolean isSecond() {
+        return this == Ranking.SECOND;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean isMatchBonusNumber() {
+        return matchBonusNumber;
+    }
+
+    public int getPrize() {
+        return prize;
     }
 }
