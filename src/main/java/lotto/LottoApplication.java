@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.Lottos;
-import lotto.domain.WinningNumber;
+import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -21,7 +21,7 @@ public class LottoApplication {
         Lotto winningNumbers = getWinningNumbers();
         OutputView.printBlank();
 
-        WinningNumber winningNumber = getWinningNumber(winningNumbers);
+        WinningLotto winningLotto = getWinningLotto(winningNumbers);
         OutputView.printBlank();
 
         // TODO: 당첨 번호 출력
@@ -54,12 +54,12 @@ public class LottoApplication {
         }
     }
 
-    private static WinningNumber getWinningNumber(Lotto winningNumbers) {
+    private static WinningLotto getWinningLotto(Lotto winningNumbers) {
         while(true) {
             try {
                 OutputView.printInputBonusNumber();
                 int bonusNumber = InputView.inputBonusNumber();
-                return new WinningNumber(winningNumbers, bonusNumber);
+                return new WinningLotto(winningNumbers, bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

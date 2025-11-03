@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class WinningNumberTest {
+public class WinningLottoTest {
 
     private Lotto winningNumbers;
 
@@ -21,7 +21,7 @@ public class WinningNumberTest {
     void winningNumberEqualBonusNumber() {
         int bonusNumber = 6;
 
-        assertThatThrownBy(() -> new WinningNumber(winningNumbers, bonusNumber))
+        assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -30,7 +30,7 @@ public class WinningNumberTest {
     void bonusNumberTooSmall() {
         int bonusNumber = 0;
 
-        assertThatThrownBy(() -> new WinningNumber(winningNumbers, bonusNumber))
+        assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -39,7 +39,7 @@ public class WinningNumberTest {
     void bonusNumberTooBig() {
         int bonusNumber = 46;
 
-        assertThatThrownBy(() -> new WinningNumber(winningNumbers, bonusNumber))
+        assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

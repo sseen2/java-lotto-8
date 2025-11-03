@@ -5,12 +5,12 @@ import static lotto.domain.LottoConstants.LOTTO_MIN_NUMBER;
 
 import lotto.view.message.ErrorMessage;
 
-public class WinningNumber {
+public class WinningLotto {
 
     private final Lotto winningNumbers;
     private final int bonusNumber;
 
-    public WinningNumber(Lotto winningNumbers, int bonusNumber) {
+    public WinningLotto(Lotto winningNumbers, int bonusNumber) {
         validateBonusNumber(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
