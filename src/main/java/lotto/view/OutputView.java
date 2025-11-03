@@ -2,9 +2,11 @@ package lotto.view;
 
 import static lotto.domain.LottoConstants.LOTTO_PRIZE;
 
+import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.Lottos;
+import lotto.domain.Ranking;
+import lotto.domain.WinningInformation;
 import lotto.view.message.InputMessage;
 import lotto.view.message.OutputMessage;
 
@@ -44,5 +46,23 @@ public class OutputView {
             print(lotto.toList().toString());
         });
         OutputView.printBlank();
+    }
+
+    public static void printWinningInformation(WinningInformation winningInformation) {
+        print(OutputMessage.WINNING_INFORMATION.getMessage());
+        List<Ranking> rankings = Ranking.getRankings();
+
+        rankings.forEach(ranking -> {
+            int matchCount = winningInformation.getMatchCount(ranking);
+            String output = String.format(getRankingString(ranking), ranking.getCount(), ranking.getPrize(), matchCount);
+            print(output);
+        });
+    }
+
+    private static String getRankingString(Ranking ranking) {
+        if (ranking.isSecond()) {
+            return OutputMessage.WINNING_INFORMATION_SECOND_FORMAT.getMessage();
+        }
+        return OutputMessage.WINNING_INFORMATION_FORMAT.getMessage();
     }
 }

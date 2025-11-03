@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.domain.LottoConstants.LOTTO_MAX_NUMBER;
 import static lotto.domain.LottoConstants.LOTTO_MIN_NUMBER;
 
+import java.util.List;
 import lotto.view.message.ErrorMessage;
 
 public class WinningLotto {
@@ -19,6 +20,15 @@ public class WinningLotto {
     private void validateBonusNumber(Lotto winningNumbers, int bonusNumber) {
         validateDuplicated(winningNumbers, bonusNumber);
         validateRange(bonusNumber);
+    }
+
+    public boolean isMatchNumber(int number) {
+        List<Integer> winningNumbers = this.winningNumbers.toList();
+        return winningNumbers.contains(number);
+    }
+
+    public boolean isMatchBonusNumber(List<Integer> numbers) {
+        return numbers.contains(bonusNumber);
     }
 
     private void validateDuplicated(Lotto winningNumbers, int bonusNumber) {

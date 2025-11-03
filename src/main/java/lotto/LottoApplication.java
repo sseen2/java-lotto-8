@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.Lottos;
+import lotto.domain.WinningInformation;
 import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -24,9 +25,9 @@ public class LottoApplication {
         WinningLotto winningLotto = getWinningLotto(winningNumbers);
         OutputView.printBlank();
 
-        // TODO: 당첨 번호 출력
-
-        // TODO: 당첨 통계 출력
+        WinningInformation winningInformation = new WinningInformation(winningLotto);
+        winningInformation.calculateResult(lottos.toList());
+        OutputView.printWinningInformation(winningInformation);
 
         // TODO: 총 수익률 출력
     }

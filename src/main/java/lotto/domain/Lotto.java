@@ -23,6 +23,15 @@ public class Lotto {
         validateNumbersDuplicated(numbers);
     }
 
+    public Ranking getRanking(WinningLotto winningLotto) {
+        int matchCount = (int) numbers.stream()
+                .filter(winningLotto::isMatchNumber)
+                .count();
+        boolean matchBonusNumber = winningLotto.isMatchBonusNumber(numbers);
+
+        return Ranking.result(matchCount, matchBonusNumber);
+    }
+
     public List<Integer> toList() {
         return Collections.unmodifiableList(numbers);
     }
