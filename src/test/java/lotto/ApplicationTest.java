@@ -16,7 +16,7 @@ import static lotto.domain.LottoConstants.LOTTO_MIN_NUMBER;
 import static lotto.domain.LottoConstants.LOTTO_PRIZE;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LottoApplicationTest extends NsTest {
+class ApplicationTest extends NsTest {
 
     @DisplayName("기능 테스트")
     @Nested
@@ -235,6 +235,6 @@ class LottoApplicationTest extends NsTest {
 
     @Override
     public void runMain() {
-        LottoApplication.main(new String[]{});
+        Application.main(new String[]{});
     }
 }
