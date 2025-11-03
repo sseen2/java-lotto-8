@@ -56,6 +56,29 @@ class LottoApplicationTest extends NsTest {
                     List.of(1, 3, 5, 14, 22, 45)
             );
         }
+
+        @DisplayName("수익 금액이 큰 경우 실행 성공")
+        @Test
+        void bigTotalPrizeTest() {
+            assertRandomUniqueNumbersInRangeTest(
+                    () -> {
+                        run("2000", "1,2,3,4,5,6", "7");
+                        assertThat(output()).contains(
+                                "2개를 구매했습니다.",
+                                "[1, 2, 3, 4, 5, 6]",
+                                "[1, 2, 3, 4, 5, 6]",
+                                "3개 일치 (5,000원) - 0개",
+                                "4개 일치 (50,000원) - 0개",
+                                "5개 일치 (1,500,000원) - 0개",
+                                "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                                "6개 일치 (2,000,000,000원) - 2개",
+                                "총 수익률은 200000000.0%입니다."
+                        );
+                    },
+                    List.of(1, 2, 3, 4, 5, 6),
+                    List.of(1, 2, 3, 4, 5, 6)
+            );
+        }
     }
 
     @DisplayName("입력 예외 테스트")
