@@ -2,7 +2,6 @@ package lotto.view;
 
 import static lotto.domain.LottoConstants.LOTTO_PRIZE;
 
-import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Ranking;
